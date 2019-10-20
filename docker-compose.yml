@@ -15,3 +15,14 @@ services:
       - "5000:5000"
     links:
       - db
+
+  angular:
+    build: ./notes-webapp/
+    depends_on:
+      - db
+      - rest-api
+    ports:
+      - "4200:4200"
+    volumes:
+      - "./notes-webapp:/notes-webapp/"
+      - "/notes-webapp/node_modules"
