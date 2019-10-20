@@ -3,8 +3,10 @@
 import argparse
 from datetime import datetime
 import json
+import requests
 
 parser = argparse.ArgumentParser()
+base_url = "http://localhost:5000"
 
 def init_parser():
     parser.add_argument("note", help="The text you want to save", type=str)
@@ -13,16 +15,16 @@ def init_parser():
 
 def parse_cmd_args():
     args = parser.parse_args()
-    print(args)
-    json_args = {}
-    json_args['note'] = {
-        'text': args.note,
+    #print(args)
+    json_args = {
+        'note': args.note,
         'date_time': str(datetime.today()),
         'tags': args.tag,
         'description': args.description
        }
-
+    response = requests.post(base_url + "/notes", json=json_args )
     print(json_args)
+    print(response.json())
 
 
 init_parser()

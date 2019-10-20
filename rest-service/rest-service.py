@@ -16,25 +16,24 @@ def get_all_notes():
     notes = mongo.db.notes
     output = []
     for note in notes.find():
-        output.append({'note': note['text'], 'description': note['description'], 'tags': note['tags'], 'date_time': note['date_time']})
-    return jsonify({'result': output})
+        output.append(Note(note= note['note'], description= note['description'], tags= note['tags'], date_time= note['date_time']))
+    return json.dumps({'result': output}, default=json_encoder, indent=4)
 
 
 @app.route('/notes/', methods=['GET'])
 def get_notes_by_tag(tag):
     notes = mongo.db.notes
-    note = notes.findAll({'tags': tag})
-    if note:
-        output = {'note': note['note'], 'description': note['description'], 'date_time': note['date_time'] }
+
 
 @app.route('/notes', methods=['POST'])
 def add_a_note():
     notesDB= mongo.db.notes
     jsonResponse = request.json
+    print(jsonResponse)
     note = Note(note=jsonResponse['note'], description=jsonResponse['description'], tags=jsonResponse['tags'], date_time=jsonResponse['date_time'])
     noteID = notesDB.insert_one(note.__dict__)
 
-    return json.dumps(note, default=convert_to_dict, indent=4)
+    return json.dumps(note, default=json_encoder, indent=4)
 
 
 # ****************** Class *********************
@@ -53,19 +52,13 @@ class Note(object):
 
 
 # ***************** JSON ***********************
-def convert_to_dict(obj):
+def json_encoder(obj):
     if isinstance(obj, ObjectId):
         return str(obj)
 
-    note_dict = {
-        "__class__": obj.__class__.__name__,
-        "__module__": obj.__module__
-    }
+    #note_dict.update(obj.__dict__)
 
-    note_dict.update(obj.__dict__)
-
-    return note_dict
-
+    return obj.__dict__
 
 if __name__ == '__main__':
     app.run(debug=True)
