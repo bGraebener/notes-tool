@@ -6,7 +6,7 @@ from flask import jsonify
 from bson import ObjectId
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb://localhost:27017/notes"
+app.config["MONGO_URI"] = "mongodb://db:27017/notes"
 mongo = PyMongo(app)
 
 # ***************** REST ***********************

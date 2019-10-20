@@ -8,5 +8,10 @@ services:
       - "27017:27017"
 
   rest-api:
-    image: python:3-alpine
-    tty: true
+    build: ./rest-service/
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
+    links:
+      - db
