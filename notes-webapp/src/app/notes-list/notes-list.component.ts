@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestServiceService } from '../rest-service.service';
+import { Note } from '../note';
 
 @Component({
   selector: 'app-notes-list',
@@ -8,15 +9,18 @@ import { RestServiceService } from '../rest-service.service';
 })
 export class NotesListComponent implements OnInit {
 
-  constructor(private rest:RestServiceService) { }
+  constructor(private rest: RestServiceService) { }
 
-  notesList = {};
+  notesList: Note[];
+
   ngOnInit() {
-    this.rest.getNotes().subscribe((data:{})=> {
-      this.notesList = data;
+    this.rest.getNotes().subscribe((data: Note[]) => {
+      this.notesList = data as Note[];
+      this.notesList.forEach(note => {note.dateTime = new Date(note.dateTime); });
       console.log(data);
+      console.log(typeof data[0].dateTime);
 
-    })
+    });
   }
 
 }

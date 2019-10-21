@@ -2,5 +2,24 @@
 
     <h1 >Hello from docker again</h1>
 
-    <p>notes-list works!</p>
+    <table class="w3-table">
+        <thead>
+            <tr>
+                <th>Note</th>
+                <th>Description</th>
+                <th>Tags</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let note of notesList">
+                <td>{{note.note}}</td>
+                <td>{{note.description}}</td>
+                <td>{{note.tags}}</td>
+                <td>{{note.dateTime | date: 'dd-MMM-yyyy HH:mm:ss'}}</td>
+            </tr>
+        </tbody>
+    </table>
+
 </div>

@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import { Note } from './note';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestServiceService {
 
-  constructor(private client:HttpClient) { }
+  constructor(private client: HttpClient) { }
 
-  baseUrl = 'http://localhost:5000/notes'
+  baseUrl = 'http://localhost:5000/notes';
 
 
-  public getNotes(): Observable<any> {
-    return this.client.get(`${this.baseUrl}`)
+  public getNotes(): Observable<Note[]> {
+    return this.client.get<Note[]>(`${this.baseUrl}`);
   }
 }
