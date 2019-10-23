@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Note } from './note';
 
 @Injectable({
@@ -10,7 +10,7 @@ export class RestServiceService {
 
   constructor(private client: HttpClient) { }
 
-  baseUrl = 'http://localhost:5000/notes';
+  baseUrl = 'http://172.30.228.180:5000/notes';
 
 
   public getNotes(): Observable<Note[]> {
