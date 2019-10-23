@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Note } from './note';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class RestServiceService {
 
   constructor(private client: HttpClient) { }
 
-  baseUrl = 'http://172.30.228.180:5000/notes';
+  baseUrl = environment.baseUrl;
 
 
   public getNotes(): Observable<Note[]> {
