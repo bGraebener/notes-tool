@@ -71,7 +71,7 @@ def json_encoder(obj):
 
 app.json_encoder = NoteEncoder
 # CORS(app)
-app.config["MONGO_URI"] = "mongodb://db:27017/notes"
+app.config["MONGO_URI"] = "mongodb://admin:admin@mongodb/notesdb"
 mongo = PyMongo(app)
 
 if __name__ == '__main__':
