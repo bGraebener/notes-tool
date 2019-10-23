@@ -2,6 +2,8 @@ FROM node:latest
 
 WORKDIR /notes-webapp
 
+EXPOSE 4200
+
 ENV PATH /notes-webapp/node_modules/.bin:$PATH
 
 COPY package.json /notes-webapp/package.json
