@@ -7,8 +7,8 @@ EXPOSE 4200
 # ENV PATH /notes-webapp/node_modules/.bin:$PATH
 
 # COPY package.json /notes-webapp/package.json
-# RUN npm install
-# RUN npm install -g @angular/cli
+RUN npm install
+RUN npm install -g @angular/cli
 
 COPY . /notes-webapp
 

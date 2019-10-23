@@ -5,7 +5,7 @@ import json
 import requests
 
 parser = argparse.ArgumentParser()
-base_url = "http://localhost:5000"
+base_url = "172.17.0.9:5000"
 
 def init_parser():
     # TODO add operation (add, get all, get single, get by tag(s))
