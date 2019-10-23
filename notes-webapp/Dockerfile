@@ -10,4 +10,4 @@ RUN npm install -g @angular/cli
 
 COPY . /notes-webapp
 
-CMD ng serve --host 0.0.0.0
+CMD ng serve
