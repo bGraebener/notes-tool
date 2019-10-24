@@ -75,6 +75,7 @@ app.json_encoder = NoteEncoder
 MONGODB_USER = os.environ['MONGODB_USER']
 MONGODB_PASSWORD = os.environ['MONGODB_PASSWORD']
 MONGODB_DATABASE = os.environ['MONGODB_DATABASE']
+print(MONGODB_USER)
 
 app.config["MONGO_URI"] = "mongodb://{}:{}@{}".format(MONGODB_USER, MONGODB_PASSWORD,MONGODB_DATABASE)
 mongo = PyMongo(app)
