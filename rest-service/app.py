@@ -6,6 +6,7 @@ from flask import jsonify
 from bson import ObjectId
 # from flask_cors import CORS
 from datetime import datetime
+import os
 
 app = Flask(__name__)
 
@@ -71,7 +72,11 @@ def json_encoder(obj):
 
 app.json_encoder = NoteEncoder
 # CORS(app)
-app.config["MONGO_URI"] = "mongodb://admin:admin@mongodb/notesdb"
+MONGODB_USER = os.environ['MONGODB_USER']
+MONGODB_PASSWORD = os.environ['MONGODB_PASSWORD']
+MONGODB_DATABASE = os.environ['MONGODB_DATABASE']
+
+app.config["MONGO_URI"] = "mongodb://{}:{}@{}".format(MONGODB_USER, MONGODB_PASSWORD,MONGODB_DATABASE)
 mongo = PyMongo(app)
 
 if __name__ == '__main__':
